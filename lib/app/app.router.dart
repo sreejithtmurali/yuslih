@@ -5,12 +5,15 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i15;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i14;
+import 'package:stacked_services/stacked_services.dart' as _i16;
 import 'package:yuslih/ui/screens/Cart/cart_view.dart' as _i11;
+import 'package:yuslih/ui/screens/Categoryitem/categoryitem_view.dart' as _i14;
 import 'package:yuslih/ui/screens/DashBoard/dashboard_view.dart' as _i12;
+import 'package:yuslih/ui/screens/DashBoardtech/dashboardtech_view.dart'
+    as _i13;
 import 'package:yuslih/ui/screens/home/home_view.dart' as _i5;
 import 'package:yuslih/ui/screens/login/login_view.dart' as _i6;
 import 'package:yuslih/ui/screens/Signup/signup_view.dart' as _i7;
@@ -44,6 +47,10 @@ class Routes {
 
   static const dashBoardView = '/dash-board-view';
 
+  static const dashBoardTechView = '/dash-board-tech-view';
+
+  static const categoryItem = '/category-item';
+
   static const all = <String>{
     splashView,
     splash2View,
@@ -56,6 +63,8 @@ class Routes {
     signUpView4,
     cartView,
     dashBoardView,
+    dashBoardTechView,
+    categoryItem,
   };
 }
 
@@ -105,23 +114,31 @@ class StackedRouter extends _i1.RouterBase {
       Routes.dashBoardView,
       page: _i12.DashBoardView,
     ),
+    _i1.RouteDef(
+      Routes.dashBoardTechView,
+      page: _i13.DashBoardTechView,
+    ),
+    _i1.RouteDef(
+      Routes.categoryItem,
+      page: _i14.CategoryItem,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.SplashView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.SplashView(),
         settings: data,
       );
     },
     _i3.Splash2View: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.Splash2View(),
         settings: data,
       );
     },
     _i4.Splash3View: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.Splash3View(),
         settings: data,
       );
@@ -130,26 +147,26 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<HomeViewArguments>(
         orElse: () => const HomeViewArguments(),
       );
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.HomeView(key: args.key),
         settings: data,
       );
     },
     _i6.LoginView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.LoginView(),
         settings: data,
       );
     },
     _i7.SignUpView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.SignUpView(),
         settings: data,
       );
     },
     _i8.SignUpView2: (data) {
       final args = data.getArgs<SignUpView2Arguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i8.SignUpView2(
             key: args.key,
             name: args.name,
@@ -160,7 +177,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i9.SignUpView3: (data) {
       final args = data.getArgs<SignUpView3Arguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i9.SignUpView3(
             key: args.key,
             name: args.name,
@@ -172,7 +189,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i10.SignUpView4: (data) {
       final args = data.getArgs<SignUpView4Arguments>(nullOk: false);
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i10.SignUpView4(
             key: args.key,
             name: args.name,
@@ -189,14 +206,28 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CartViewArguments>(
         orElse: () => const CartViewArguments(),
       );
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => _i11.CartView(key: args.key),
         settings: data,
       );
     },
     _i12.DashBoardView: (data) {
-      return _i13.MaterialPageRoute<dynamic>(
+      return _i15.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.DashBoardView(),
+        settings: data,
+      );
+    },
+    _i13.DashBoardTechView: (data) {
+      return _i15.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.DashBoardTechView(),
+        settings: data,
+      );
+    },
+    _i14.CategoryItem: (data) {
+      final args = data.getArgs<CategoryItemArguments>(nullOk: false);
+      return _i15.MaterialPageRoute<dynamic>(
+        builder: (context) => _i14.CategoryItem(
+            key: args.key, categoryselected: args.categoryselected),
         settings: data,
       );
     },
@@ -211,7 +242,7 @@ class StackedRouter extends _i1.RouterBase {
 class HomeViewArguments {
   const HomeViewArguments({this.key});
 
-  final _i13.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -238,7 +269,7 @@ class SignUpView2Arguments {
     required this.password,
   });
 
-  final _i13.Key? key;
+  final _i15.Key? key;
 
   final String name;
 
@@ -275,7 +306,7 @@ class SignUpView3Arguments {
     required this.phone,
   });
 
-  final _i13.Key? key;
+  final _i15.Key? key;
 
   final String? name;
 
@@ -322,7 +353,7 @@ class SignUpView4Arguments {
     required this.amt,
   });
 
-  final _i13.Key? key;
+  final _i15.Key? key;
 
   final String name;
 
@@ -372,7 +403,7 @@ class SignUpView4Arguments {
 class CartViewArguments {
   const CartViewArguments({this.key});
 
-  final _i13.Key? key;
+  final _i15.Key? key;
 
   @override
   String toString() {
@@ -391,7 +422,34 @@ class CartViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i14.NavigationService {
+class CategoryItemArguments {
+  const CategoryItemArguments({
+    this.key,
+    required this.categoryselected,
+  });
+
+  final _i15.Key? key;
+
+  final String categoryselected;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "categoryselected": "$categoryselected"}';
+  }
+
+  @override
+  bool operator ==(covariant CategoryItemArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.categoryselected == categoryselected;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ categoryselected.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i16.NavigationService {
   Future<dynamic> navigateToSplashView([
     int? routerId,
     bool preventDuplicates = true,
@@ -435,7 +493,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> navigateToHomeView({
-    _i13.Key? key,
+    _i15.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -479,7 +537,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> navigateToSignUpView2({
-    _i13.Key? key,
+    _i15.Key? key,
     required String name,
     required String email,
     required String password,
@@ -499,7 +557,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> navigateToSignUpView3({
-    _i13.Key? key,
+    _i15.Key? key,
     required String? name,
     required String? email,
     required String? password,
@@ -524,7 +582,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> navigateToSignUpView4({
-    _i13.Key? key,
+    _i15.Key? key,
     required String name,
     required String email,
     required String password,
@@ -555,7 +613,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> navigateToCartView({
-    _i13.Key? key,
+    _i15.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -578,6 +636,38 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.dashBoardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToDashBoardTechView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.dashBoardTechView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCategoryItem({
+    _i15.Key? key,
+    required String categoryselected,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.categoryItem,
+        arguments:
+            CategoryItemArguments(key: key, categoryselected: categoryselected),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -627,7 +717,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> replaceWithHomeView({
-    _i13.Key? key,
+    _i15.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -671,7 +761,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> replaceWithSignUpView2({
-    _i13.Key? key,
+    _i15.Key? key,
     required String name,
     required String email,
     required String password,
@@ -691,7 +781,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> replaceWithSignUpView3({
-    _i13.Key? key,
+    _i15.Key? key,
     required String? name,
     required String? email,
     required String? password,
@@ -716,7 +806,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> replaceWithSignUpView4({
-    _i13.Key? key,
+    _i15.Key? key,
     required String name,
     required String email,
     required String password,
@@ -747,7 +837,7 @@ extension NavigatorStateExtension on _i14.NavigationService {
   }
 
   Future<dynamic> replaceWithCartView({
-    _i13.Key? key,
+    _i15.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -770,6 +860,38 @@ extension NavigatorStateExtension on _i14.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.dashBoardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithDashBoardTechView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.dashBoardTechView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCategoryItem({
+    _i15.Key? key,
+    required String categoryselected,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.categoryItem,
+        arguments:
+            CategoryItemArguments(key: key, categoryselected: categoryselected),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

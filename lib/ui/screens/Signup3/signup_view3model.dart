@@ -47,11 +47,14 @@ class SignUpView3Model extends BaseViewModel {
       'Plumber',
       'Cleaner',
       'Gardener',
+    'Electrician',
       'House Keeping',
+    'Driver'
       'Helper',
       'Welder',
       'Bike Mechanic',
-      'AC Mechanic'];
+      'AC Mechanic'
+  'others'];
   }
 
 

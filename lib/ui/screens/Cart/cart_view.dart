@@ -7,6 +7,7 @@ import 'cart_viewmodel.dart';
 
 
 class CartView extends StatelessWidget {
+  late String Category;
   CartView({Key? key}) : super(key: key);
 
   @override

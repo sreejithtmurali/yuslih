@@ -10,9 +10,26 @@ import '../../../app/utils.dart';
 import '../../../models/RspBanner.dart';
 import '../../../services/api_service.dart';
 import 'package:firebase_database/firebase_database.dart';
+
+import 'category.dart';
 class HomeViewModel extends BaseViewModel {
   int _current = 0;
+List<Category> clist=[
+  Category(id: 1, name: 'Expert Painter', image: 'assets/images/painter.png'),
+  Category(id: 2, name: 'Carpenter', image: 'assets/images/carpenter.png'),
+  Category(id: 3, name:   'Driver', image: 'assets/images/driver.png'),
+  Category(id: 3, name:   'Plumber', image: 'assets/images/driver.png'),
+  Category(id: 4, name:  'Cleaner', image: 'assets/images/carpenter.png'),
+  Category(id: 5, name:  'Gardener', image: 'assets/images/carpenter.png'),
+  Category(id: 6, name:    'House Keeping', image: 'assets/images/carpenter.png'),
+  Category(id: 7, name: 'Welder', image: 'assets/images/carpenter.png'),
+  Category(id: 8, name: 'Bike Mechanic', image: 'assets/images/carpenter.png'),
+  Category(id: 9, name: 'AC Mechanic', image: 'assets/images/carpenter.png'),
+  Category(id: 10, name: 'Helper', image: 'assets/images/construction.png'),
+  Category(id: 11, name: 'Electrician', image: 'assets/images/electritionexpert.png'),
+  Category(id: 12, name: 'others', image: 'assets/images/electritionexpert.png'),
 
+];
   int get current => _current;
   int index = 1;
   List<Worker> workers = [];
@@ -37,44 +54,55 @@ class HomeViewModel extends BaseViewModel {
     navigationService.navigateTo(Routes.cartView);
   }
 
-
-  void fetchDataFromFirebase() {
-    DatabaseReference db_Ref = FirebaseDatabase.instance.ref().child('user');
-    db_Ref.onValue.listen((DatabaseEvent event) {
-      final data = event.snapshot;
-      Map Contact = data.value as Map;
-
-      print(Contact.toString());
-    });
+  void navCategory(String c) {
+    navigationService.navigateTo(Routes.categoryItem,arguments: CategoryItemArguments(categoryselected:c));
   }
-
-  void fetchWorkersFromFirebase() {
+  void fetchDataFromFirebase() {
     DatabaseReference db_Ref = FirebaseDatabase.instance.ref().child('workers');
     db_Ref.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot;
-      //var Workerrr = data.value;
-
-      Map<String, Map<String, dynamic>> Workerrr= data.value as Map<String, Map<String, dynamic>>;
-
-
-
-     notifyListeners();
-
-      String jsonResponse = json.encode(Workerrr.toString());
-      print('jsonResponse    $jsonResponse');
-
-      workers = convertMapToList(Workerrr);
-      workers.forEach((worker) {
-        print(worker.name);
-      });
-
-
-
-      notifyListeners();
-      print('list    $workers');
-
+      Map Contact = data.value as Map<dynamic,dynamic>;
+      print(Contact.toString());
+      workers = convertFirebaseResponseToWorkerList(Contact);
+      print('workers::::${workers.toString()}');
     });
+
+
+
+
+
+
   }
+
+  List<Worker> convertFirebaseResponseToWorkerList(Map<dynamic, dynamic> firebaseResponse) {
+
+
+    firebaseResponse.forEach((key, value) {
+      String id = key;
+      String password = value['password'];
+      String name = value['name'];
+      String url = value['url'];
+      String email = value['email'];
+      String adharno=value['adharno'];
+      String  phone= value['phone'];
+      String  dropdownValue= value['dropdownValue'];
+
+      String  amt=value['amt'];
+      String selectedCategory= value['selectedcategory'];
+
+      Worker worker = Worker(id: id, password: password, name: name, url: url, email: email, adharno:adharno, phone: phone, dropdownValue: dropdownValue, amt: amt, selectedCategory: selectedCategory );
+      workers.add(worker);
+    });
+
+    return workers;
+  }
+
+// Usage example:
+
+
+
+// Accessing worker details
+
 
 
 

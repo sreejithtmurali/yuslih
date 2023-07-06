@@ -18,6 +18,9 @@ class LoginView extends StatelessWidget {
       statusBarColor: Colors.transparent,
     ));
     return ViewModelBuilder<LoginViewModel>.reactive(
+      onViewModelReady: (model){
+        model.fetchDataFromFirebase();
+      },
       builder: (context, model, child) {
 
         return Scaffold(
@@ -39,15 +42,14 @@ class LoginView extends StatelessWidget {
 
 class TitleSection extends ViewModelWidget<LoginViewModel> {
   TitleSection({Key? key}) : super(key: key);
-  final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context, LoginViewModel viewModel) {
-    var usernameController = TextEditingController();
-    var passwordController = TextEditingController();
+
 
     return Form(
-        key: _formKey,
+        key:viewModel.formKey,
         child: ListView(
 
           children: <Widget>[
@@ -100,7 +102,7 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                   }
                   return null;
                 },
-                controller: usernameController,
+                controller:viewModel.usernameController,
 
                 decoration: const InputDecoration(
                   filled: true,
@@ -137,7 +139,7 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                   return null;
                 },
                 obscureText: true,
-                controller: passwordController,
+                controller: viewModel.passwordController,
                 decoration:  InputDecoration(
                   filled: true,
                   fillColor: Color(0xffFAFAFA),
@@ -163,20 +165,7 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 24, top: 6.0,right: 24),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.end,
-            //     children: <Widget>[
-            //       TextButton(
-            //           onPressed: () {},
-            //           child: const Text(
-            //             'Forgot Password',
-            //             style: TextStyle(fontSize: 14, color: Colors.grey),
-            //           ))
-            //     ],
-            //   ),
-            // ),
+
             Padding(
               padding: const EdgeInsets.only(left: 24, top: 32.0, right: 24),
               child: Container(
@@ -193,7 +182,9 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                           color: Colors.white,
                         )),
                     onPressed: () {
-                     viewModel.navHomr();
+                      if(viewModel.formKey.currentState!.validate()) {
+                        viewModel.navHomr();
+                      }
                     },
 
                   )),
@@ -227,7 +218,9 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                           color:Color(0xff4FE0B5),
                         )),
                     onPressed: () {
-                      viewModel.navSignup();
+
+                        viewModel.navSignup();
+
                     },
 
                   )),

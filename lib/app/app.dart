@@ -1,5 +1,7 @@
 
+import 'package:yuslih/ui/screens/Categoryitem/categoryitem_view.dart';
 import 'package:yuslih/ui/screens/DashBoard/dashboard_view.dart';
+import 'package:yuslih/ui/screens/DashBoardtech/dashboardtech_view.dart';
 import 'package:yuslih/ui/screens/Signup/signup_view.dart';
 import 'package:yuslih/ui/screens/Signup4/signup_view4.dart';
 
@@ -32,6 +34,8 @@ import '../ui/screens/home/home_view.dart';
     MaterialRoute(page: SignUpView4),
     MaterialRoute(page: CartView),
     MaterialRoute(page: DashBoardView),
+    MaterialRoute(page: DashBoardTechView),
+    MaterialRoute(page: CategoryItem),
   ],
   dependencies: [
     LazySingleton(classType: ApiService),

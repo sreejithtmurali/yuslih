@@ -1,19 +1,21 @@
+import 'package:firebase_database/firebase_database.dart';
+
 class Worker {
-  final String id;
-  final String password;
-  final String adhharno;
-  final String phone;
-  final String dropdownValue;
-  final String name;
-  final int amt;
-  final String selectedCategory;
-  final String email;
-  final String url;
+  late String id;
+  late String password;
+  late String adharno;
+  late String phone;
+  late String dropdownValue;
+  late String name;
+  late String amt;
+  late String selectedCategory;
+  late String email;
+  late String url;
 
   Worker({
     required this.id,
     required this.password,
-    required this.adhharno,
+    required this.adharno,
     required this.phone,
     required this.dropdownValue,
     required this.name,
@@ -22,27 +24,6 @@ class Worker {
     required this.email,
     required this.url,
   });
-}
 
-List<Worker> convertMapToList(Map<String, Map<String, dynamic>> map) {
-  List<Worker> workers = [];
 
-  map.forEach((key, value) {
-    workers.add(
-      Worker(
-        id: key,
-        password: value['password'],
-        adhharno: value['adhharno'],
-        phone: value['phone'],
-        dropdownValue: value['dropdownValue'],
-        name: value['name'],
-        amt: value['amt'],
-        selectedCategory: value['selectedcategory'],
-        email: value['email'],
-        url: value['url'],
-      ),
-    );
-  });
-
-  return workers;
 }
