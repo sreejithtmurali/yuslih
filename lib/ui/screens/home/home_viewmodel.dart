@@ -3,6 +3,7 @@ import 'dart:convert';
 
 
 import 'package:stacked/stacked.dart';
+import 'package:yuslih/services/database_helper.dart';
 import 'package:yuslih/ui/screens/home/workerrr.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
@@ -13,6 +14,17 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'category.dart';
 class HomeViewModel extends BaseViewModel {
+
+  final _dbservice = locator<DBWorkerManager>();
+  List<Worker> favlist = [];
+
+  Future<void> getFavlist() async {
+    var data = await runBusyFuture(_dbservice.getStudentList());
+    if (data.isNotEmpty) {
+      favlist = data;
+    }
+  }
+
   int _current = 0;
 List<Category> clist=[
   Category(id: 1, name: 'Expert Painter', image: 'assets/images/painter.png'),

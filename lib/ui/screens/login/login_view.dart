@@ -13,10 +13,10 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
+                      FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+                      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                        statusBarColor: Colors.transparent,
+                      ));
     return ViewModelBuilder<LoginViewModel>.reactive(
       onViewModelReady: (model){
         model.fetchDataFromFirebase();
@@ -107,11 +107,6 @@ class TitleSection extends ViewModelWidget<LoginViewModel> {
                 decoration: const InputDecoration(
                   filled: true,
                   fillColor: Color(0xffFAFAFA),
-
-                  // border: OutlineInputBorder(
-                  //   borderSide: BorderSide(
-                  //       width: 1, color: Color(0xffE4F8F8)),
-                  // ),
                   labelText: 'Email',
                   labelStyle:  TextStyle(color: Color(0xffBFBFBF)),
                   floatingLabelStyle:  TextStyle(color: Color(0xffBFBFBF)),

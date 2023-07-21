@@ -116,14 +116,6 @@ class SignUpView4Model extends BaseViewModel {
       notifyListeners();
     }
     showDialogue();
-print(name);
-    print(email);
-    print(password);
-    print(phone);print(selectedcategory.toString());
-    print(dropdownValue);
-    print(url);
-    print(amt);
-    print(Adharno);
 
     try {
       if (url != null) {
@@ -145,6 +137,7 @@ print(name);
             _isBusy = !_isBusy;
             notifyListeners();
           }
+          //code to navigate to login page
           navigationService.pushNamedAndRemoveUntil(Routes.loginView);
         });
       }

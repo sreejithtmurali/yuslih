@@ -14,6 +14,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.nonReactive(
       onViewModelReady: (model) {
+        model.getFavlist();
         model.getSponsorSlide();
         model.fetchDataFromFirebase();
         // model.fetchWorkersFromFirebase();
@@ -233,7 +234,7 @@ class TitleSection extends ViewModelWidget<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      onModelReady: (model) => model.getSponsorSlide(),
+      onViewModelReady: (model) => model.getSponsorSlide(),
       builder: (context, model, child) => ModelFutureListBuilder<RspBanner>(
           busy: model.isBusy,
           data: model.banner_images,
@@ -251,7 +252,7 @@ class TopTech extends ViewModelWidget<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      onModelReady: (model) => model.getSponsorSlide(),
+      onViewModelReady: (model) => model.getSponsorSlide(),
       builder: (context, model, child) => ModelFutureListBuilder<RspBanner>(
           busy: model.isBusy,
           data: model.banner_images,
@@ -265,55 +266,58 @@ class TopTech extends ViewModelWidget<HomeViewModel> {
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 16.0,
                 children: List.generate(viewModel.workers.length, (index) {
-                  return Container(
-                    height: ScreenSize.getHeight(
-                        double.parse(800.toString()), 200.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xf5ffffff),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                            height: ScreenSize.getHeight(
-                                double.parse(800.toString()), 170.0),
-                            child: Image.network(viewModel.workers[index].url,
-                                height: ScreenSize.getHeight(
-                                    double.parse(800.toString()), 152.0),
-                                fit: BoxFit.cover)),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${viewModel.workers[index].name}",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xff3d3d3d),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5.0, top: 2),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${viewModel.workers[index].selectedCategory}",
-                                style: TextStyle(
-                                    fontSize: 12,
+                  return Card(
+                    child: Container(
+                      height: ScreenSize.getHeight(
+                          double.parse(800.toString()), 200.0),
+                      decoration: BoxDecoration(
+                        color: Color(0xf5ffffff),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                              height: ScreenSize.getHeight(
+                                  double.parse(800.toString()), 170.0),
+                              child: Image.network(viewModel.workers[index].url,
+                                  height: ScreenSize.getHeight(
+                                      double.parse(800.toString()), 152.0),
+                                  fit: BoxFit.cover)),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${viewModel.workers[index].name}",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
                                     color: Color(0xff3d3d3d),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.0, top: 2),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${viewModel.workers[index].selectedCategory}",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color(0xff3d3d3d),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),

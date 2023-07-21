@@ -75,7 +75,8 @@ Key?key;
                   )))
             ],
           ),
-          body: SafeArea(
+          body:model.isBusy?Center(child: CircularProgressIndicator()):
+          SafeArea(
             top: true,
             bottom: true,
             child: Container(

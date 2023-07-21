@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Worker {
-  late String id;
+   String? id;
   late String password;
   late String adharno;
   late String phone;
@@ -13,7 +13,7 @@ class Worker {
   late String url;
 
   Worker({
-    required this.id,
+    this.id,
     required this.password,
     required this.adharno,
     required this.phone,
@@ -25,5 +25,8 @@ class Worker {
     required this.url,
   });
 
+   Map<String, dynamic> toMap() {
+     return {'id':id,'name': name, 'password': password,'adharno':adharno,'phone':phone,'dropdownValue':dropdownValue,'amt':amt,'selectedCategory':selectedCategory,'email':email,'url':url};
+   }
 
 }

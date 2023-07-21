@@ -12,6 +12,8 @@ import '../../../constants/assets.gen.dart';
 import '../../tools/model_future_builder.dart';
 import '../../tools/screen_size.dart';
 import '../../widgets/banner.dart';
+import '../Fav/fav_view.dart';
+import '../Finder/finder_view.dart';
 import 'dashboard_viewmodel.dart';
 
 class DashBoardView extends StatelessWidget {
@@ -64,7 +66,7 @@ class Body2 extends ViewModelWidget<DashBoardViewModel> {
   Widget build(BuildContext context, DashBoardViewModel viewModel) {
     late int c;
     c = viewModel.current;
-    List<Widget> pages = [HomeView(), CartView(), HomeView(), CartView()];
+    List<Widget> pages = [HomeView(), FinderView(), HomeView(), Fav()];
 
     return pages[viewModel.current];
   }
